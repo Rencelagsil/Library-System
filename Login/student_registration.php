@@ -10,7 +10,7 @@
   <main class="login-container">
     <img src="logo.png" alt="Library Logo" class="logo" />
     <h1>Student Registration</h1>
-    <form action="register_student.php" method="POST">
+    <form action="student_registration.php" method="POST">
       <div class="form-group">
         <label for="email">Email Address</label>
         <input type="email" id="email" name="email" required />
