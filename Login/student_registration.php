@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +12,7 @@
   <main class="login-container">
     <img src="logo.png" alt="Library Logo" class="logo" />
     <h1>Student Registration</h1>
-    <form action="student_registration.php" method="POST">
+    <form action="register.php" method="POST">
       <div class="form-group">
         <label for="email">Email Address</label>
         <input type="email" id="email" name="email" required />
@@ -32,7 +34,7 @@
         <input type="password" id="confirmPassword" name="confirmPassword" required />
       </div>
       <div class="form-options">
-        <a href="login.html" class="forgot-password">Already have an account?</a>
+        <a href="login.php" class="forgot-password">Already have an account?</a>
       </div>
       <button type="submit" class="login-btn">Register</button>
     </form>
