@@ -34,7 +34,7 @@
         <input type="password" id="confirmPassword" name="confirmPassword" required />
       </div>
       <div class="form-options">
-        <a href="login.php" class="forgot-password">Already have an account?</a>
+        <a href="signin.php" class="forgot-password">Already have an account?</a>
       </div>
       <button type="submit" class="login-btn">Register</button>
     </form>

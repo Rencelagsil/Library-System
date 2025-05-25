@@ -29,7 +29,7 @@ $sql = "INSERT INTO students_registration (email, student_id, username, password
 if ($conn->query($sql) === TRUE) {
     echo "<script>
             alert('Registration successful! Click OK to login.');
-            window.location.href = 'login.php';
+            window.location.href = 'signin.php';
           </script>";
 } else {
     echo "<script>alert('Error: " . $conn->error . "');</script>";
