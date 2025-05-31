@@ -1,57 +1,264 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-  <title>Library Staff Dashboard</title>
-  <link rel="stylesheet" href="staff_dashboard.css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Dashboard</title>
+    <link rel="stylesheet" href="staffdash.css">
 </head>
 <body>
-  <header class="header">
-    <img src="logo.png" alt="Library Logo" class="logo"/>
-    <h1>Staff Dashboard</h1>
-    <nav class="nav">
-      <a href="#">Home</a>
-      <a href="#">Books</a>
-      <a href="#">Borrowers</a>
-      <a href="#">Reports</a>
-      <a href="#">Logout</a>  
+    <button class="burger-menu" onclick="toggleSidebar()" id="burgerBtn">☰</button>
+
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-title">
+                <div class="sidebar-icon">📚</div>
+                <span>Lathoug's Library</span>
+            </div>
+        </div>
+        <ul class="sidebar-menu">
+            <div class="menu-section">
+                <div class="section-title">Main</div>
+                <li class="menu-item">
+                    <a href="#" class="menu-link active">
+                        <div class="menu-icon">🏠</div>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+            </div>
+
+            <div class="menu-section">
+                <div class="section-title">Book Management</div>
+                <li class="menu-item">
+                    <a href="#" class="menu-link" onclick="showSection('books')">
+                        <div class="menu-icon">📖</div>
+                        <span>All Books</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link" onclick="showSection('add-book')">
+                        <div class="menu-icon">➕</div>
+                        <span>Add New Book</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link" onclick="showSection('loans')">
+                        <div class="menu-icon">📤</div>
+                        <span>Issue Book</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link" onclick="showSection('returns')">
+                        <div class="menu-icon">📥</div>
+                        <span>Return Book</span>
+                    </a>
+                </li>
+            </div>
+
+            <div class="menu-section">
+                <div class="section-title">Student Management</div>
+                <li class="menu-item">
+                    <a href="#" class="menu-link" onclick="showSection('students')">
+                        <div class="menu-icon">👥</div>
+                        <span>All Students</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link" onclick="showSection('add-student')">
+                        <div class="menu-icon">👤</div>
+                        <span>Register Student</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link" onclick="showSection('overdue')">
+                        <div class="menu-icon">⚠️</div>
+                        <span>Overdue Management</span>
+                    </a>
+                </li>
+            </div>
+
+            <div class="menu-section">
+                <div class="section-title">Reports & Settings</div>
+                <li class="menu-item">
+                    <a href="#" class="menu-link" onclick="showSection('reports')">
+                        <div class="menu-icon">📊</div>
+                        <span>Reports</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link" onclick="showSection('settings')">
+                        <div class="menu-icon">⚙️</div>
+                        <span>Settings</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link" onclick="logout()">
+                        <div class="menu-icon">🚪</div>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </div>
+        </ul>
     </nav>
-  </header>
 
-  <main class="main-dashboard">
-    <section class="card quick-actions">
-      <h2>Quick Actions</h2>
-      <ul>
-        <li><a href="#">Add New Book</a></li>
-        <li><a href="#">Register Borrower</a></li>
-        <li><a href="#">Issue Book</a></li>
-        <li><a href="#">Return Book</a></li>
-        <a href="add_user.html">Add User</a>
+    <main class="main-content" id="mainContent">
+        <div class="top-bar">
+            <div>
+                <h1 class="page-title">🛠️ Staff Dashboard</h1>
+                <div class="breadcrumb">Home</div>
+            </div>
+            <div class="user-section">
+                <div class="notifications" onclick="showNotifications()">
+                    <div style="font-size: 1.2rem;">🔔</div>
+                    <div class="notification-badge">5</div>
+                </div>
+            
+                <div class="user-avatar">👤</div>
+            </div>
+        </div>
 
-      </ul>
-    </section>
+        <div class="content-grid">
+            <div class="left-section">
+                <div class="stats-grid">
+                    <div class="stat-card total-students" onclick="showSection('students')">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-number">1,247</div>
+                        <div class="stat-label">Total Students</div>
+                    </div>
 
-    <section class="card stats">
-      <h2>Statistics</h2>
-      <p>Total Books: <strong>1,280</strong></p>
-      <p>Borrowed Books: <strong>340</strong></p>
-      <p>Overdue Returns: <strong>24</strong></p>
-      <p>Active Borrowers: <strong>156</strong></p>
-    </section>
+                    <div class="stat-card active-loans" onclick="showSection('loans')">
+                        <div class="stat-icon">📤</div>
+                        <div class="stat-number">340</div>
+                        <div class="stat-label">Active Loans</div>
+                    </div>
 
-    <section class="card announcements">
-      <h2>Announcements</h2>
-      <ul>
-        <li>📢 Scheduled system maintenance on April 20.</li>
-        <li>📦 New books arriving next week!</li>
-      </ul>
-    </section>
-  </main>
+                    <div class="stat-card overdue-items" onclick="showSection('overdue')">
+                        <div class="stat-icon">⚠️</div>
+                        <div class="stat-number">24</div>
+                        <div class="stat-label">Overdue Items</div>
+                    </div>
 
-  <footer class="footer">
-    <p>&copy; 2025 Lathoug's Library. Staff Panel.</p>
-  </footer>
+                    <div class="stat-card total-books" onclick="showSection('books')">
+                        <div class="stat-icon">📚</div>
+                        <div class="stat-number">5,280</div>
+                        <div class="stat-label">Total Books</div>
+                    </div>
+                </div>
+
+                <div class="chart-section">
+                    <div class="chart-header">
+                        <h3 class="chart-title">📈 Library Activity Overview</h3>
+                        <div class="chart-legend">
+                            <div class="legend-item">
+                                <div class="legend-dot legend-issued"></div>
+                                <span>Issued</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-dot legend-returned"></div>
+                                <span>Returned</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-dot legend-overdue"></div>
+                                <span>Overdue</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <div class="chart-bar" style="height: 120px;">
+                            <div class="chart-month">Jan</div>
+                        </div>
+                        <div class="chart-bar" style="height: 150px;">
+                            <div class="chart-month">Feb</div>
+                        </div>
+                        <div class="chart-bar" style="height: 180px;">
+                            <div class="chart-month">Mar</div>
+                        </div>
+                        <div class="chart-bar" style="height: 140px;">
+                            <div class="chart-month">Apr</div>
+                        </div>
+                        <div class="chart-bar" style="height: 170px;">
+                            <div class="chart-month">May</div>
+                        </div>
+                        <div class="chart-bar" style="height: 110px;">
+                            <div class="chart-month">Jun</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-section">
+                <div class="quick-actions">
+                    <h3 class="actions-title">⚡ Quick Actions</h3>
+                    <button class="action-btn" onclick="quickAction('issue')">📤 Issue Book</button>
+                    <button class="action-btn success" onclick="quickAction('return')">📥 Return Book</button>
+                    <button class="action-btn" onclick="quickAction('add-student')">👤 Register Student</button>
+                    <button class="action-btn" onclick="quickAction('add-book')">📖 Add New Book</button>
+                    <button class="action-btn danger" onclick="quickAction('overdue')">⚠️ Manage Overdue</button>
+                </div>
+
+                <div class="recent-activity">
+                    <h3 class="activity-title">🕒 Recent Activity</h3>
+                    <div class="activity-item">
+                        <div class="activity-icon loan">📤</div>
+                        <div class="activity-details">
+                            <div class="activity-title-text">Book Issued</div>
+                            <div class="activity-subtitle">"Database Systems" to Maria Garcia (ID: 2311600105)</div>
+                        </div>
+                        <div class="activity-time">2 min ago</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon return">📥</div>
+                        <div class="activity-details">
+                            <div class="activity-title-text">Book Returned</div>
+                            <div class="activity-subtitle">"Web Development" by John Smith (ID: 2311600089)</div>
+                        </div>
+                        <div class="activity-time">15 min ago</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon student">👤</div>
+                        <div class="activity-details">
+                            <div class="activity-title-text">New Student Registered</div>
+                            <div class="activity-subtitle">Alex Johnson (ID: 2311600110)</div>
+                        </div>
+                        <div class="activity-time">1 hour ago</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon overdue">⚠️</div>
+                        <div class="activity-details">
+                            <div class="activity-title-text">Overdue Notice Sent</div>
+                            <div class="activity-subtitle">To student ID: 2311600078 for "Programming Guide"</div>
+                        </div>
+                        <div class="activity-time">2 hours ago</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon loan">📤</div>
+                        <div class="activity-details">
+                            <div class="activity-title-text">Multiple Books Issued</div>
+                            <div class="activity-subtitle">3 books to Sarah Wilson (ID: 2311600095)</div>
+                        </div>
+                        <div class="activity-time">3 hours ago</div>
+                    </div>
+                </div>
+
+                <div class="announcements">
+                    <h3 class="announcements-title">📢 System Announcements</h3>
+                    <div class="announcement-item">
+                        <strong>📅 Scheduled Maintenance</strong><br>
+                        System will be offline on April 20, 2-4 AM for updates.
+                    </div>
+                    <div class="announcement-item">
+                        <strong>📦 New Books Arrival</strong><br>
+                        150 new books added to the catalog this week.
+                    </div>
+                    <div class="announcement-item">
+                        <strong>🏆 Reading Challenge</strong><br>
+                        Summer reading program starts June 1st.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="staffdash.js"></script>
 </body>
 </html>
