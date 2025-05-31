@@ -19,12 +19,13 @@
         <ul class="sidebar-menu">
             <div class="menu-section">
                 <div class="section-title">Main</div>
-                <li class="menu-item">
-                    <a href="#" class="menu-link active">
-                        <div class="menu-icon">🏠</div>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
+            <li class="menu-item">
+  <a href="#" class="menu-link active" onclick="showSection('dashboard'); setActiveMenu(this); return false;">
+    <div class="menu-icon">🏠</div>
+    <span>Dashboard</span>
+  </a>
+</li>
+
             </div>
 
             <div class="menu-section">
@@ -63,7 +64,13 @@
                         <div class="menu-icon">👥</div>
                         <span>All Students</span>
                     </a>
-                
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link" onclick="showSection('approval')">
+                        <div class="menu-icon">👤</div>
+                        <span>Student Approval</span>
+                    </a>
+                </li>
              
             </div>
 
@@ -103,7 +110,6 @@
                     <div class="notification-badge">5</div>
                 </div>
             
-                <div class="user-avatar">👤</div>
             </div>
         </div>
 
@@ -122,10 +128,10 @@
                         <div class="stat-label">Return Book</div>
                     </div>
 
-                    <div class="stat-card overdue-items" onclick="showSection('overdue')">
+                    <div class="stat-card overdue-items" onclick="showSection('history')">
                         <div class="stat-icon">⚠️</div>
                         <div class="stat-number">24</div>
-                        <div class="stat-label">Overdue Books</div>
+                        <div class="stat-label">History</div>
                     </div>
 
                     <div class="stat-card total-books" onclick="showSection('books')">
@@ -179,11 +185,12 @@
             <div class="right-section">
                 <div class="quick-actions">
                     <h3 class="actions-title">⚡ Quick Actions</h3>
-                    <button class="action-btn" onclick="quickAction('issue')">📤 Issue Book</button>
-                    <button class="action-btn success" onclick="quickAction('return')">📥 Return Book</button>
-                    <button class="action-btn" onclick="quickAction('add-student')">👤 Register Student</button>
-                    <button class="action-btn" onclick="quickAction('add-book')">📖 Add New Book</button>
-                    <button class="action-btn danger" onclick="quickAction('overdue')">⚠️ Manage Overdue</button>
+                    <button class="action-btn danger" onclick="showSection('books')">All Books</button>
+                    <button class="action-btn" onclick="showSection('add-book')">📖 Add New Book</button>
+                    <button class="action-btn success" onclick="showSection('returns')">📥 Return Book</button>
+                    <button class="action-btn" onclick="showSection('history')">📤 History</button>
+                    <button class="action-btn" onclick="showSection('students')">👤 Student List</button>
+                      
                 </div>
 
                 <div class="recent-activity">

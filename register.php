@@ -23,8 +23,9 @@ if ($pass !== $confirmPass) {
     exit;
 }
 
-$sql = "INSERT INTO students_registration (email, student_id, username, password)
-        VALUES ('$email', '$studentId', '$usernameInput', '$pass')";
+$sql = "INSERT INTO students_registration (email, student_id, username, password, approval_status)
+        VALUES ('$email', '$studentId', '$usernameInput', '$pass', 'Pending')";
+
 
 if ($conn->query($sql) === TRUE) {
     echo "<script>
