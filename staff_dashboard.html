@@ -41,16 +41,17 @@
                         <span>Add New Book</span>
                     </a>
                 </li>
-                <li class="menu-item">
-                    <a href="#" class="menu-link" onclick="showSection('loans')">
-                        <div class="menu-icon">📤</div>
-                        <span>Issue Book</span>
-                    </a>
-                </li>
+                
                 <li class="menu-item">
                     <a href="#" class="menu-link" onclick="showSection('returns')">
                         <div class="menu-icon">📥</div>
                         <span>Return Book</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="#" class="menu-link" onclick="showSection('history')">
+                        <div class="menu-icon">📤</div>
+                        <span>History</span>
                     </a>
                 </li>
             </div>
@@ -62,19 +63,8 @@
                         <div class="menu-icon">👥</div>
                         <span>All Students</span>
                     </a>
-                </li>
-                <li class="menu-item">
-                    <a href="#" class="menu-link" onclick="showSection('add-student')">
-                        <div class="menu-icon">👤</div>
-                        <span>Register Student</span>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="#" class="menu-link" onclick="showSection('overdue')">
-                        <div class="menu-icon">⚠️</div>
-                        <span>Overdue Management</span>
-                    </a>
-                </li>
+                
+             
             </div>
 
             <div class="menu-section">
@@ -126,16 +116,16 @@
                         <div class="stat-label">Total Students</div>
                     </div>
 
-                    <div class="stat-card active-loans" onclick="showSection('loans')">
+                    <div class="stat-card active-loans" onclick="showSection('returns')">
                         <div class="stat-icon">📤</div>
                         <div class="stat-number">340</div>
-                        <div class="stat-label">Active Loans</div>
+                        <div class="stat-label">Return Book</div>
                     </div>
 
                     <div class="stat-card overdue-items" onclick="showSection('overdue')">
                         <div class="stat-icon">⚠️</div>
                         <div class="stat-number">24</div>
-                        <div class="stat-label">Overdue Items</div>
+                        <div class="stat-label">Overdue Books</div>
                     </div>
 
                     <div class="stat-card total-books" onclick="showSection('books')">
