@@ -114,20 +114,44 @@ function searchBooks(query) {
 
 // Borrow book functionality
 function borrowBook(isbn) {
-    // Simulate borrowing process
     const confirmation = confirm(`Are you sure you want to borrow this book (ISBN: ${isbn})?`);
-    
-    if (confirmation) {
-        // Show success message
-        showMessage('success', 'Book borrowed successfully! Check your borrowing history for details.');
-        
-        // Update statistics (simulate)
-        updateBorrowedBooksCount();
-        
-        // You could also update the available count for the specific book here
-        updateBookAvailability(isbn);
+
+    if (!confirmation) return;
+
+    // Assuming you have studentId in a global variable or can fetch it
+    const studentId = window.studentId; // Replace with your actual way to get student_id
+
+    if (!studentId) {
+        showMessage('error', 'Student ID not found. Please log in again.');
+        return;
     }
+
+    fetch('api/borrow_book.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            student_id: studentId,
+            isbn: isbn
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            showMessage('success', data.message);
+            updateBorrowedBooksCount();
+            updateBookAvailability(isbn);
+        } else {
+            showMessage('error', data.message || 'Failed to borrow book.');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        showMessage('error', 'An error occurred while borrowing the book.');
+    });
 }
+
 
 // Return book functionality
 function returnBook(bookId) {
