@@ -118,8 +118,10 @@ function borrowBook(isbn) {
 
     if (!confirmation) return;
 
-    // Assuming you have studentId in a global variable or can fetch it
-    const studentId = window.studentId; // Replace with your actual way to get student_id
+    // Get studentId from localStorage (make sure you store it after login)
+    const studentId = localStorage.getItem('studentId');
+
+    console.log('Borrowing book for studentId:', studentId); // For debugging
 
     if (!studentId) {
         showMessage('error', 'Student ID not found. Please log in again.');
@@ -151,6 +153,7 @@ function borrowBook(isbn) {
         showMessage('error', 'An error occurred while borrowing the book.');
     });
 }
+
 
 
 // Return book functionality
