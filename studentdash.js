@@ -293,19 +293,18 @@ function showFAQ() {
     `);
 }
 
-// Logout functionality
 function logout() {
     const confirmation = confirm('Are you sure you want to logout?');
     if (confirmation) {
         showMessage('info', 'Logging out...');
-        // Simulate logout delay
         setTimeout(() => {
-            alert('You have been logged out successfully.');
-            // In a real application, you would redirect to login page
-            window.location.reload();
+            // Redirect to sign.php automatically without alert
+            window.location.href = 'signin.php';
         }, 1500);
     }
 }
+
+
 
 // Show message function
 function showMessage(type, message) {
