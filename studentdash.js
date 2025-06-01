@@ -3,17 +3,16 @@
 // Sidebar toggle functionality
 function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');
-    const mainContent = document.getElementById('mainContent');
     const burgerBtn = document.getElementById('burgerBtn');
     
-    sidebar.classList.toggle('collapsed');
-    mainContent.classList.toggle('expanded');
+    // Toggle the sidebar visibility using the correct class
+    sidebar.classList.toggle('active');
     
-    // Change burger icon
-    if (sidebar.classList.contains('collapsed')) {
-        burgerBtn.innerHTML = '☰';
-    } else {
+    // Change burger icon based on sidebar state
+    if (sidebar.classList.contains('active')) {
         burgerBtn.innerHTML = '✕';
+    } else {
+        burgerBtn.innerHTML = '☰';
     }
 }
 
@@ -37,9 +36,8 @@ function showSection(sectionId) {
     // Close sidebar on mobile after selection
     if (window.innerWidth <= 768) {
         const sidebar = document.getElementById('sidebar');
-        const mainContent = document.getElementById('mainContent');
-        sidebar.classList.add('collapsed');
-        mainContent.classList.add('expanded');
+        sidebar.classList.remove('active');
+        document.getElementById('burgerBtn').innerHTML = '☰';
     }
 }
 
@@ -194,18 +192,12 @@ function updateBookAvailability(isbn) {
 // Show/hide notifications
 function showNotifications() {
     const popup = document.getElementById('notificationPopup');
-    popup.style.display = 'block';
-    setTimeout(() => {
-        popup.classList.add('show');
-    }, 10);
+    popup.classList.add('active');
 }
 
 function hideNotifications() {
     const popup = document.getElementById('notificationPopup');
-    popup.classList.remove('show');
-    setTimeout(() => {
-        popup.style.display = 'none';
-    }, 300);
+    popup.classList.remove('active');
 }
 
 // Update profile functionality
@@ -332,7 +324,9 @@ function showMessage(type, message) {
     setTimeout(() => {
         messageDiv.style.transform = 'translateX(100%)';
         setTimeout(() => {
-            document.body.removeChild(messageDiv);
+            if (document.body.contains(messageDiv)) {
+                document.body.removeChild(messageDiv);
+            }
         }, 300);
     }, 3000);
 }
@@ -345,11 +339,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add responsive behavior
     window.addEventListener('resize', function() {
         const sidebar = document.getElementById('sidebar');
-        const mainContent = document.getElementById('mainContent');
         
         if (window.innerWidth > 768) {
-            sidebar.classList.remove('collapsed');
-            mainContent.classList.remove('expanded');
+            // On desktop, keep sidebar closed by default
+            sidebar.classList.remove('active');
+            document.getElementById('burgerBtn').innerHTML = '☰';
         }
     });
     
@@ -359,9 +353,23 @@ document.addEventListener('DOMContentLoaded', function() {
         const notificationBtn = document.querySelector('.notifications');
         
         if (!popup.contains(event.target) && !notificationBtn.contains(event.target)) {
-            if (popup.classList.contains('show')) {
+            if (popup.classList.contains('active')) {
                 hideNotifications();
             }
+        }
+    });
+    
+    // Close sidebar when clicking outside on mobile
+    document.addEventListener('click', function(event) {
+        const sidebar = document.getElementById('sidebar');
+        const burgerBtn = document.getElementById('burgerBtn');
+        
+        if (window.innerWidth <= 768 && 
+            !sidebar.contains(event.target) && 
+            !burgerBtn.contains(event.target) && 
+            sidebar.classList.contains('active')) {
+            sidebar.classList.remove('active');
+            burgerBtn.innerHTML = '☰';
         }
     });
     
